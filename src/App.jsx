@@ -24,6 +24,8 @@ function App() {
 
   const taskComplete = [...todos].filter((task) => task.completed === true);
 
+  const taskActive = [...todos].filter((task) => task.completed === false);
+
   const KEY_LOCAL_STORAGE = "tasks";
 
   const taskRef = useRef();
@@ -69,17 +71,12 @@ function App() {
 
   return (
     <>
-      <Container
-        w={"md"}
-        maxH={"sm"}
-        transition={"all"}
-        transitionDuration={"0.5s"}
-      >
+      <Container w={"lg"} maxH={"md"}>
         <Heading textAlign={"center"} margin={"20px auto"}>
           Todo App
         </Heading>
 
-        <Box>
+        <Box w={"full"}>
           <InputGroup size="md">
             <Input
               pr="4.5rem"
@@ -88,7 +85,7 @@ function App() {
               errorBorderColor="crimson"
               borderRadius={"full"}
               size={"lg"}
-              focusBorderColor="green"
+              focusBorderColor="green.500"
               variant={"filled"}
               ref={taskRef}
               isInvalid={errorInput}
@@ -116,6 +113,8 @@ function App() {
               ? todos
               : filter === "complete"
               ? taskComplete
+              : filter === "pending"
+              ? taskActive
               : todos
           }
           togleTodo={togleTodo}
@@ -130,19 +129,20 @@ function App() {
           marginRight={"auto"}
         >
           <TabList>
-            <Tab onClick={() => setFilter("all")}>All {todos.length}</Tab>
-
-            <Tab
-              onClick={() => {
-                setFilter("complete");
-              }}
-            >
-              Complete {taskComplete.length}
+            <Tab onClick={() => setFilter("all")}> All {todos.length} </Tab>
+            <Tab onClick={() => setFilter("pending")}>
+              {" "}
+              Pending {taskActive.length}{" "}
             </Tab>
+            <Tab onClick={() => setFilter("complete")}>
+              {" "}
+              Complete {taskComplete.length}{" "}
+            </Tab>
+
             <Button
               rightIcon={<DeleteIcon />}
               colorScheme="green"
-              variant="ghost"
+              variant="solid"
               size={"md"}
               borderRadius={"full"}
               marginLeft={3}

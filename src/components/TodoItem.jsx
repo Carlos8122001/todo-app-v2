@@ -25,7 +25,8 @@ export default function TodoItem({ todo, togleTodo, deleteTodo }) {
         >
           <Box display={"flex"} flexDirection={"row"} gap={3}>
             <Checkbox
-              checked={completed ? true : false}
+              checked={completed}
+              defaultChecked={completed}
               size={"lg"}
               colorScheme="green"
               rounded={"full"}
