@@ -5,7 +5,7 @@ import { List } from "@chakra-ui/react";
 export default function TodoList({ todos, togleTodo, deleteTodo }) {
   return (
     <>
-    <List spacing={3}>
+    <List spacing={3} w={{base:"90%",lg:"full"}} mx={"auto"}>
         {todos.map((todo) => (
           <TodoItem
             key={todo.id}

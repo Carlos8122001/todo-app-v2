@@ -7,16 +7,16 @@ import {
   IconButton,
   Text,
 } from "@chakra-ui/react";
-import { CloseIcon, EditIcon } from "@chakra-ui/icons";
+import { CloseIcon } from "@chakra-ui/icons";
 export default function TodoItem({ todo, togleTodo, deleteTodo }) {
-    const { id, task, completed } = todo;
+  const { id, task, completed } = todo;
 
-    const handleTodoClick = () => {
-      togleTodo(id);
-    };
+  const handleTodoClick = () => {
+    togleTodo(id);
+  };
   return (
     <>
-    <Card boxShadow={"md"} marginTop={8} w={"full"}>
+      <Card marginTop={8} w={"full"} h={"24"} rounded={"lg"} boxShadow={"md"}>
         <CardBody
           display={"flex"}
           justifyContent={"space-between"}
@@ -29,14 +29,13 @@ export default function TodoItem({ todo, togleTodo, deleteTodo }) {
               defaultChecked={completed}
               size={"lg"}
               colorScheme="green"
-              rounded={"full"}
               variant={"circular"}
               onChange={() => {
                 handleTodoClick(id);
               }}
             />
             <Text
-              fontSize={{sm:"lg",md:"lg",xl:"xl"}}
+              fontSize={{ sm: "lg", md: "lg", xl: "xl" }}
               fontWeight={"medium"}
               textAlign={"center"}
               textDecoration={completed ? "line-through" : "none"}
@@ -48,13 +47,13 @@ export default function TodoItem({ todo, togleTodo, deleteTodo }) {
             onClick={() => {
               deleteTodo(id);
             }}
-            icon={<CloseIcon />}
-            bgColor={"transparent"}
-            color={"red"}
-            colorScheme="red"
+            icon={<CloseIcon boxSize={5} />}
+            color={"green"}
+            bg={"transparent"}
+            size={"sm"}
             sx={{
               _hover: {
-                backgroundColor: "transparent",
+                bg: "transparent",
               },
             }}
           />
