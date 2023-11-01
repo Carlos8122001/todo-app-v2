@@ -16,6 +16,7 @@ import {
 import { AddIcon } from "@chakra-ui/icons";
 
 function App() {
+  const [todos, setTodos] = useState([]);
 
   const optionFilter = {
     All: "all",
@@ -23,15 +24,13 @@ function App() {
     COMPLETE: "complete",
   };
 
-  const KEY_LOCAL_STORAGE = "tasks";
-
-  const [todos, setTodos] = useState([]);
-
   const [filter, setFilter] = useState(optionFilter.All);
 
   const [errorInput, setErrorInput] = useState(false);
 
   const taskRef = useRef();
+
+  const KEY_LOCAL_STORAGE = "tasks";
 
   const addTodo = () => {
     const task = taskRef.current.value;
@@ -145,8 +144,8 @@ function App() {
               ? todos
               : filter === optionFilter.COMPLETE
               ? todos.filter((task) => task.completed === true)
-              : filter === todos.filter((task) => task.completed === false)
-              ? taskActive
+              : filter === optionFilter.PENDING
+              ? todos.filter((task) => task.completed === false)
               : todos
           }
           togleTodo={togleTodo}
